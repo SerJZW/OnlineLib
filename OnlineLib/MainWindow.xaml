@@ -1,0 +1,92 @@
+﻿<Window x:Class="OnlineLib.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:OnlineLib"
+        mc:Ignorable="d"
+        Title="OnlineLib" Height="1080" Width="1920" MinHeight="800" MinWidth="1000" Icon="C:\Users\zemzh\Downloads\IconApl.png">
+  <!-- WindowState="Maximized"
+        WindowStyle="None"--> 
+
+
+    <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="18*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="12*"/>
+
+        </Grid.RowDefinitions>
+
+        <DockPanel Background="DarkBlue" Grid.RowSpan="1" Grid.ColumnSpan="3" MinHeight="10px" MinWidth="20px">
+            <Image Grid.Row="0" Grid.Column="0" Source="/Images/IconApl.png" MinHeight="40px" MinWidth="40px"></Image>
+            <TextBlock Foreground="White" FontSize="40pt" FontStyle="Italic" MinHeight="10pt" MinWidth="10pt" HorizontalAlignment="Center" VerticalAlignment="Top">OnlineLib</TextBlock>
+            <Button  Name="Exit" Width="180px" Height="50px" HorizontalAlignment="Right" Margin="10, 10,10,0" Content="Exit" FontSize="20pt" Background="SkyBlue" Foreground="Black" Click="Exit_Click" DockPanel.Dock="Right">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            <Button Name="Contact" Width="180px" Height="50px" HorizontalAlignment="Right" Margin="10, 10,10,0" Content="Contact" FontSize="20pt" Background="White" Foreground="DarkBlue" DockPanel.Dock="Right" Click="Contact_Click">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            <Button Name="About_Apl" Width="180px" Height="50px" HorizontalAlignment="Right" Margin="10, 10,10,0" Content="About Apl" FontSize="20pt" Background="White" Foreground="DarkBlue" Click="About_Apl_Click" DockPanel.Dock="Right">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+        </DockPanel>
+
+        <DockPanel Grid.Row="2" Background="DarkBlue" ></DockPanel>
+
+        <DockPanel Grid.Column="1" Grid.Row="1" MinHeight="600px" MinWidth="600">
+            <TabControl>
+                <TabItem Header="Main" FontSize="40pt" FontStyle="Italic" FontFamily="Times New Roman"  Foreground="DarkBlue">
+                    <DockPanel MinHeight="400" MinWidth="400">
+                        <Viewbox>
+                            <Border BorderBrush="Black" BorderThickness="3"  Width="600" Height="auto" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="40,30,0,30" MinHeight="300px" MinWidth="300px">
+                                <TextBlock FontFamily="Times New Roman" FontStyle="Italic" TextWrapping="Wrap" TextAlignment="Center" Foreground="Black" Margin="25" FontSize="35pt" >Библиотеки всегда были местами, где слова приобретают жизнь и книги открывают двери в бескрайний мир знаний. Однако иногда они превращаются в более магические места, где слова превращаются в истории, а бумага оживает. Именно таким местом стала наша библиотека во время недавнего мероприятия под названием "Литературное Путешествие".</TextBlock>
+                            </Border>
+                        </Viewbox>
+                        <Viewbox>
+                            <DockPanel Width="auto" Height="auto">
+                                <Image Source="/Images/3.jpg" Height="650" Width="650" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="40,700,0,40" Stretch="UniformToFill"/>
+                                <Image Source="/Images/2.jpg" Height="650" Width="650" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="40,40,30,0" Stretch="UniformToFill"/>
+                            </DockPanel>
+                        </Viewbox>
+                        
+                    </DockPanel>
+
+                </TabItem>
+
+                <TabItem Header="Books" FontSize="40pt" FontStyle="Italic" FontFamily="Times New Roman"  Foreground="DarkBlue">
+                    <TabItem.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="10"/>
+                        </Style>
+                    </TabItem.Resources>
+
+                </TabItem>
+                <TabItem Header="Users" FontSize="40pt" FontStyle="Italic" FontFamily="Times New Roman" Foreground="DarkBlue">
+                    <TabItem.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="10"/>
+                        </Style>
+                    </TabItem.Resources>
+                </TabItem>
+            </TabControl>
+        </DockPanel>
+    </Grid>
+
+</Window>

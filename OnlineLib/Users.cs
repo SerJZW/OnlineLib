@@ -6,16 +6,18 @@ using System.Threading.Tasks;
 
 namespace OnlineLib
 {
-    class Users
+   public class Users
     {
-        public int Id;
-        public string Name;
-        public string Family;
-        public Users(int id, string name, string family) 
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Family { get; set; }
+        public List<Books> Books { get; set; }
+        public Users(int id, string name, string family, List<Books> books) 
         {
             Id = id;
             Name = name;
             Family = family;
+            Books = books;
         }
     }
     

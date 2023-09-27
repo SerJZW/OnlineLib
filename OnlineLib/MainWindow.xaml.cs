@@ -1,17 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace OnlineLib
 {
@@ -20,12 +11,32 @@ namespace OnlineLib
     /// </summary>
     public partial class MainWindow : Window
     {
+        public List<Users>? user;
+     
+
         public MainWindow()
         {
+            user = new List<Users>();
             InitializeComponent();
-            List<Books> books = new List<Books>() {
-                new Books("Puskin","SS", DateTime.Now, 2)
+            List<Books> books = new List<Books>()
+            {
+               new Books("Pushkin A.S.", 1 , new DateOnly(1817, 1, 24), 40),
+               new Books("Esenin A.S.", 1 , new DateOnly(1860, 5, 19), 15),
+               new Books("Gogol N.V.", 1 , new DateOnly(1840, 12, 10), 10),
+               new Books("Tolstoy L.N.", 1 , new DateOnly(1880, 4, 4), 60),
+               new Books("Chehov A.P.", 1 , new DateOnly(1890, 1, 15), 70),
             };
+            BooksList.ItemsSource = books;
+          
+            List<Users> users = new List<Users>()
+            {
+                new Users(1,"Sergey","Zemtsov", books),
+                new Users(2,"Timur","Salahutdinov", books),
+                new Users(3,"LEvan","Levcenko", books),
+                new Users(4,"Egor","Ivanov", books),
+                new Users(5,"Ivanova","Nadezhda", books),
+            };  
+            UsersList.ItemsSource = users;
 
         }
 
@@ -43,5 +54,30 @@ namespace OnlineLib
         {
             System.Windows.Application.Current.Shutdown();
         }
+
+        private void BooksList_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            Books books = BooksList.SelectedItem as Books;
+
+        }
+
+        private void UsersList_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            Users user = UsersList.SelectedItem as Users;
+            IdText.Text = Convert.ToString(user.Id);
+           NameText.Text = Convert.ToString(user.Name);
+            FamilyText.Text = Convert.ToString(user.Family);
+        }
+
+        private void Add_ClickUser(object sender, RoutedEventArgs e)
+        {
+          
+        }
+
+        private void Delete_ClickUser(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
+   

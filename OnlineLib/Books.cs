@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 
 namespace OnlineLib
 {
-    class Books
+    public class Books
     {
-        public string Autor;
-        public string Arc;
-        public DateTime Age;
-        public int Count;
-        public Books(string autor, string arc, DateTime age, int count) 
+        public string Autor { get; set; }
+        public short Acr { get; set; }
+        public DateOnly Age { get; set; }
+        public int Count { get; set; }
+        public Books(string autor, short acr, DateOnly age, int count) 
         {
             Autor = autor;
-            Arc = arc;
+            Acr = acr;
             Age = age;
             Count = count;
         }

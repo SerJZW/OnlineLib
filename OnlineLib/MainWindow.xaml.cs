@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using static System.Net.Mime.MediaTypeNames;
@@ -11,20 +12,21 @@ namespace OnlineLib
     /// </summary>
     public partial class MainWindow : Window
     {
-        public List<Users>? user;
-     
+
+        public List<Users> user = new List<Users>();
 
         public MainWindow()
         {
-            user = new List<Users>();
+           
+
             InitializeComponent();
             List<Books> books = new List<Books>()
             {
                new Books("Pushkin A.S.", 1 , new DateOnly(1817, 1, 24), 40),
-               new Books("Esenin A.S.", 1 , new DateOnly(1860, 5, 19), 15),
-               new Books("Gogol N.V.", 1 , new DateOnly(1840, 12, 10), 10),
-               new Books("Tolstoy L.N.", 1 , new DateOnly(1880, 4, 4), 60),
-               new Books("Chehov A.P.", 1 , new DateOnly(1890, 1, 15), 70),
+               new Books("Esenin A.S.", 2 , new DateOnly(1860, 5, 19), 15),
+               new Books("Gogol N.V.", 3 , new DateOnly(1840, 12, 10), 10),
+               new Books("Tolstoy L.N.", 4 , new DateOnly(1880, 4, 4), 60),
+               new Books("Chehov A.P.", 5 , new DateOnly(1890, 1, 15), 70),
             };
             BooksList.ItemsSource = books;
           
@@ -58,15 +60,27 @@ namespace OnlineLib
         private void BooksList_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
             Books books = BooksList.SelectedItem as Books;
-
+            if (books != null)
+            {
+                AutorText.Text = Convert.ToString(books.Autor);
+                AcrText.Text = Convert.ToString(books.Acr);
+                AgeText.Text = Convert.ToString(books.Age);
+                CountText.Text = Convert.ToString(books.Count);
+            }
         }
+
+        
 
         private void UsersList_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
-            Users user = UsersList.SelectedItem as Users;
-            IdText.Text = Convert.ToString(user.Id);
-           NameText.Text = Convert.ToString(user.Name);
-            FamilyText.Text = Convert.ToString(user.Family);
+            Users selectedUser = UsersList.SelectedItem as Users;
+            if (selectedUser != null)
+            {                
+                BooksList.ItemsSource = selectedUser.Books;
+                IdText.Text = Convert.ToString(selectedUser.Id);
+                NameText.Text = Convert.ToString(selectedUser.Name);
+                FamilyText.Text = Convert.ToString(selectedUser.Family);
+            }
         }
 
         private void Add_ClickUser(object sender, RoutedEventArgs e)
@@ -76,7 +90,52 @@ namespace OnlineLib
 
         private void Delete_ClickUser(object sender, RoutedEventArgs e)
         {
+           
+        }
 
+        private void Add_ClickBooks(object sender, RoutedEventArgs e)
+        {
+            
+         
+        }
+
+        private void Delete_ClickBooks(object sender, RoutedEventArgs e)
+        {
+           
+         
+        }
+
+        private void Reride_ClickBooks(object sender, RoutedEventArgs e)
+        {           
+            if (BooksList.SelectedItem != null)
+            {
+                Books selectedBook = BooksList.SelectedItem as Books;
+                if (selectedBook != null)
+                {                  
+                    selectedBook.Autor = AutorText.Text;
+                    selectedBook.Acr = Convert.ToInt16(AcrText.Text);
+                    selectedBook.Age = DateOnly.Parse(AgeText.Text);
+                    selectedBook.Count = Convert.ToInt32(CountText.Text);      
+                    BooksList.Items.Refresh();
+                    MessageBox.Show("Данные книги успешно обновлены.");
+                    
+                }
+            }
+        }
+
+        private void Reride_ClickUsers(object sender, RoutedEventArgs e)
+        {
+            if (UsersList.SelectedItem != null)
+            {
+                Users selectedUser = UsersList.SelectedItem as Users;
+                if (selectedUser != null)
+                {                 
+                    selectedUser.Name = NameText.Text;
+                    selectedUser.Family = FamilyText.Text;
+                    UsersList.Items.Refresh();
+                    MessageBox.Show("Данные пользователя успешно обновлены.");
+                }
+            }
         }
     }
 }

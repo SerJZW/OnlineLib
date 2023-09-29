@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OnlineLib"
         mc:Ignorable="d"
-        Title="OnlineLib" Height="1080" Width="1920" MinHeight="800" MinWidth="1000" Icon="/Images/IconApl.png" 
-WindowState="Maximized"
-    WindowStyle="None" >
+        Title="OnlineLib" Height="1080" Width="1920" MinHeight="800" MinWidth="1000" Icon="/Images/IconApl.png" >
+    <!-- WindowState="Maximized"
+    WindowStyle="None" >  -->
 
 
     <Grid>
@@ -77,8 +77,8 @@ WindowState="Maximized"
                             <Setter Property="CornerRadius" Value="10"/>
                         </Style>
                     </TabItem.Resources>
-                   
-                    <ListView Name="BooksList"  FontFamily="Times New Roman" FontSize="30pt" SelectionChanged="BooksList_SelectionChanged">
+                    <StackPanel>
+                    <ListView Name="BooksList"  FontFamily="Times New Roman" FontSize="20pt" SelectionChanged="BooksList_SelectionChanged">
                             <ListView.View>
                                 <GridView>
                                     <GridViewColumn  Width="250" Header="Autor" DisplayMemberBinding="{Binding Path=Autor}" />
@@ -88,7 +88,50 @@ WindowState="Maximized"
                                 </GridView>
                             </ListView.View>
                         </ListView>
-                      
+                        <DockPanel>
+                            <Label HorizontalAlignment="Center" FontFamily="Gabriola" FontSize="30pt" Foreground="DarkBlue" FontWeight="Bold">Добавить книгу</Label>
+                        </DockPanel>
+                        <DockPanel>
+                            <Label  FontFamily="Times New Roman" FontSize="20pt"  FontStyle="Italic" Foreground="Black" Width="300">Автор</Label>
+                            <TextBox Name="AutorText" FontSize="20pt" Margin="-300,5,0,0" VerticalAlignment="Center" Height="40" Width="400" HorizontalAlignment="Center"></TextBox>
+                        </DockPanel>
+                        <DockPanel>
+                            <Label  FontFamily="Times New Roman" FontSize="15pt"  FontStyle="Italic" Foreground="Black" Width="300">Артикул</Label>
+                            <TextBox Name="AcrText" FontSize="20pt" Margin="-300,5,0,0" VerticalAlignment="Center" Height="40" Width="400" HorizontalAlignment="Center" Background="AliceBlue"></TextBox>
+                        </DockPanel>
+                        <DockPanel>
+                            <Label  FontFamily="Times New Roman" FontSize="15pt"  FontStyle="Italic" Foreground="Black" Width="300">Дата</Label>
+                            <TextBox Name="AgeText" FontSize="20pt" Margin="-300,5,0,0" VerticalAlignment="Center" Height="40" Width="400" HorizontalAlignment="Center"></TextBox>
+                        </DockPanel>
+                        <DockPanel>
+                            <Label  FontFamily="Times New Roman" FontSize="15pt"  FontStyle="Italic" Foreground="Black" Width="300">Количесвто</Label>
+
+                            <TextBox Name="CountText" FontSize="20pt" Margin="-300,5,0,0" VerticalAlignment="Center" Height="40" Width="400" HorizontalAlignment="Center" Background="AliceBlue"></TextBox>
+                        </DockPanel>
+                        <DockPanel  HorizontalAlignment="Center" Margin="10,10,0,0">
+                        <Button Name="AddBooksBtn" Click="Add_ClickBooks"  FontSize="10pt" Height="50" Background="DarkBlue" Foreground="White" Width="150" Content="Добавить Книгу" VerticalAlignment="Bottom" Margin="10,0,0,0">
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="10"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+                        <Button Name="DeleteBooksBtn" Click="Delete_ClickBooks" Background="DarkBlue" Height="50" Foreground="White" Width="150"  Content="Удалить Книгу" FontSize="10pt" VerticalAlignment="Bottom"  Margin="10,0,0,0">
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="10"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+                        <Button Name="RerideBooksBtn" Click="Reride_ClickBooks"  Background="DarkBlue" Height="50" Foreground="White" Width="150"  Content="Перезаписать Книгу" FontSize="10pt" VerticalAlignment="Bottom"  Margin="10,0,0,0">
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="10"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+                        </DockPanel>
+                    </StackPanel>
                 </TabItem>
                 <TabItem Header="Users" FontSize="40pt" FontStyle="Italic" FontFamily="Times New Roman" Foreground="DarkBlue">
                    
@@ -129,21 +172,30 @@ WindowState="Maximized"
 
                             <TextBox Name="BooksUserText" FontSize="20pt" Margin="-300,5,0,0" VerticalAlignment="Center" Height="40" Width="400" HorizontalAlignment="Center" Background="AliceBlue"></TextBox>
                         </DockPanel>
-                        <Button Name="AddBtn" Click="Add_ClickUser" HorizontalAlignment="Right" FontSize="10pt" Height="50" Background="DarkBlue" Foreground="White" Width="150" Content="Добавить пользователя" VerticalAlignment="Top" Margin="100,-120,50,0">
+                        <DockPanel HorizontalAlignment="Center" Margin="10,10,0,0">
+                        <Button Name="AddUserBtn" Click="Add_ClickUser"  FontSize="10pt" Height="50" Background="DarkBlue" Foreground="White" Width="150" Content="Добавить пользователя" VerticalAlignment="Top" Margin="10,0,0,0">
                             <Button.Resources>
                                 <Style TargetType="Border">
                                     <Setter Property="CornerRadius" Value="10"/>
                                 </Style>
                             </Button.Resources>
                         </Button>
-                        <Button Name="DeleteBtn" Click="Delete_ClickUser" HorizontalAlignment="Right" Background="DarkBlue" Height="50" Foreground="White" Width="150"  Content="Удалить Пользователя" FontSize="10pt" VerticalAlignment="Bottom"  Margin="100,-150,50,0">
+                        <Button Name="DeleteUserBtn" Click="Delete_ClickUser"  Background="DarkBlue" Height="50" Foreground="White" Width="150"  Content="Удалить Пользователя" FontSize="10pt" VerticalAlignment="Bottom"  Margin="10,0,0,0">
                             <Button.Resources>
                                 <Style TargetType="Border">
                                     <Setter Property="CornerRadius" Value="10"/>
                                 </Style>
                             </Button.Resources>
                         </Button>
-                        <!-- Добавить кнопку перезаписи и сохранения -->
+                        <Button Name="RerideUsersBtn" Click="Reride_ClickUsers"  Background="DarkBlue" Height="50" Foreground="White" Width="150"  Content="Перезаписать Пользователя" FontSize="10pt" VerticalAlignment="Bottom"  Margin="10,0,0,0">
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="10"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+                        </DockPanel>
+                     
                     </StackPanel>
                 </TabItem>
             </TabControl>

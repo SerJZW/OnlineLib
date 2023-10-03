@@ -8,7 +8,7 @@ namespace OnlineLib
 {
     public class Books
     {
-        public string Autor { get; set; }
+        public string? Autor { get; set; }
         public short Acr { get; set; }
         public DateOnly Age { get; set; }
         public int Count { get; set; }

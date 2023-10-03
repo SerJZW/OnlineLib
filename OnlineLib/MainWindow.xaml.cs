@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Windows;
 
 namespace OnlineLib
@@ -14,11 +13,11 @@ namespace OnlineLib
 
         private static List<Users> users = new List<Users>()
         {
-                new Users(1,"Sergey","Zemtsov", books),
-                new Users(2,"Timur","Salahutdinov", books),
-                new Users(3,"LEvan","Levcenko", books),
-                new Users(4,"Egor","Ivanov", books),
-                new Users(5,"Ivanova","Nadezhda", books),
+                new Users(1,"Sergey","Zemtsov"),
+                new Users(2,"Timur","Salahutdinov"),
+                new Users(3,"LEvan","Levcenko"),
+                new Users(4,"Egor","Ivanov"),
+                new Users(5,"Ivanova","Nadezhda"),
         };
         private static List<Books> books = new List<Books>()
         {
@@ -37,6 +36,8 @@ namespace OnlineLib
 
             BooksList.ItemsSource = books;
             UsersList.ItemsSource = users;
+            UserAddList.ItemsSource= users;
+            BookAddList.ItemsSource = books;
 
         }
 
@@ -77,7 +78,7 @@ namespace OnlineLib
                 IdText.Text = Convert.ToString(selectedUser.Id);
                 NameText.Text = Convert.ToString(selectedUser.Name);
                 FamilyText.Text = Convert.ToString(selectedUser.Family);
-                BooksList.ItemsSource = selectedUser.Books;
+                BooksUserText.Text = Convert.ToString(selectedUser.UserBooks);
             }
         }
 
@@ -90,7 +91,7 @@ namespace OnlineLib
                 {
                     string newName = NameText.Text;
                     string newFamily = FamilyText.Text;
-                    Users newUser = new Users(newUserId, newName, newFamily, new List<Books>());
+                    Users newUser = new Users(newUserId, newName, newFamily);
                     users.Add(newUser);
                     IdText.Text = "";
                     NameText.Text = "";
@@ -167,14 +168,11 @@ namespace OnlineLib
             if (books != null && BooksList.SelectedItem != null)
             {
                 Books? selectedBook = BooksList.SelectedItem as Books;
-                MessageBoxResult result = MessageBox.Show($"Вы уверены, что хотите удалить книгу с артикулом {selectedBook.Acr}?", "Подтверждение удаления", MessageBoxButton.YesNo, MessageBoxImage.Question);
-                if (result == MessageBoxResult.Yes)
-                {
-                    books.Remove(selectedBook);
-                    BooksList.ItemsSource = books;
-                    BooksList.Items.Refresh();
-                    MessageBox.Show("Книга успешно удалена.");
-                }
+
+                books.Remove(selectedBook);
+                BooksList.ItemsSource = books;
+                BooksList.Items.Refresh();
+                MessageBox.Show("Книга успешно удалена.");
             }
         }
 
@@ -211,9 +209,34 @@ namespace OnlineLib
             }
         }
 
-        private void AddBook_ClickUsers(object sender, RoutedEventArgs e)
-        {
+        private void AddBookToUser_Click(object sender, RoutedEventArgs e)
+        { 
+            Users? selectedUser = UserAddList.SelectedItem as Users;
+            Books? selectedBook = BookAddList.SelectedItem as Books;
 
+         
+            if (selectedUser == null || selectedBook == null)
+            {
+                MessageBox.Show("Выберите пользователя и книгу для выдачи.");
+                return;
+            }
+
+            if (selectedBook.Count > 0)
+            {
+                selectedBook.Count--;
+                UserAddList.Items.Refresh();
+                BookAddList.Items.Refresh();
+                UsersList.Items.Refresh();
+                BooksList.Items.Refresh();
+
+                UserAddList.SelectedItem = null;
+                BookAddList.SelectedItem = null;
+                MessageBox.Show("Книга успешно выдана пользователю.");
+            }
+            else
+            {
+                MessageBox.Show("Эта книга больше не доступна.");
+            }
         }
     }
 }

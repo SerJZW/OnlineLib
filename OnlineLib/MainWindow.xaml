@@ -53,6 +53,11 @@
         <DockPanel Grid.Column="1" Grid.Row="1" MinHeight="600px" MinWidth="600">
             <TabControl>
                 <TabItem Header="Main" FontSize="40pt" FontStyle="Italic" FontFamily="Times New Roman"  Foreground="DarkBlue">
+                    <TabItem.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="10"/>
+                        </Style>
+                    </TabItem.Resources>
                     <DockPanel MinHeight="400" MinWidth="400">
                         <Viewbox>
                             <Border BorderBrush="Black" BorderThickness="3"  Width="400" Height="auto" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="40,10,0,150" MinHeight="300px" MinWidth="300px">
@@ -147,13 +152,7 @@
                                 <GridViewColumn  Width="150" Header="ID" DisplayMemberBinding="{Binding Path=Id}"/>
                                 <GridViewColumn  Width="400" Header="Name" DisplayMemberBinding="{Binding Path=Name}"/>
                                 <GridViewColumn Width="400" Header="Family" DisplayMemberBinding="{Binding Path=Family}"/>
-                                    <GridViewColumn Width="250" Header="Books">
-                                        <GridViewColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <TextBlock Text="{Binding Books.Count}" />
-                                            </DataTemplate>
-                                        </GridViewColumn.CellTemplate>
-                                    </GridViewColumn>
+                                <GridViewColumn Width="250" Header="Books" DisplayMemberBinding="{Binding Path=Books}"/>
                                 </GridView>
                         </ListView.View>
                     </ListView>
@@ -193,23 +192,56 @@
                                 </Style>
                             </Button.Resources>
                         </Button>
-                        <Button Name="RerideUsersBtn" Click="Reride_ClickUsers"  Background="DarkBlue" Height="50" Foreground="White" Width="150"  Content="Перезаписать Пользователя" FontSize="10pt" VerticalAlignment="Bottom"  Margin="10,0,0,0">
-                            <Button.Resources>
-                                <Style TargetType="Border">
-                                    <Setter Property="CornerRadius" Value="10"/>
-                                </Style>
-                            </Button.Resources>
-                        </Button>
-                            <Button Name="AddBookToUser" Click="AddBook_ClickUsers"  Background="DarkBlue" Height="50" Foreground="White" Width="150"  Content="Добавить книгу пользователю" FontSize="7pt" VerticalAlignment="Bottom"  Margin="10,0,0,0">
+                            <Button Name="RerideUsersBtn" Click="Reride_ClickUsers"  Background="DarkBlue" Height="50" Foreground="White" Width="150"  Content="Перезаписать Пользователя" FontSize="10pt" VerticalAlignment="Bottom"  Margin="10,0,0,0">
                                 <Button.Resources>
                                     <Style TargetType="Border">
                                         <Setter Property="CornerRadius" Value="10"/>
                                     </Style>
                                 </Button.Resources>
                             </Button>
+                           
                         </DockPanel>
                      
                     </StackPanel>
+                </TabItem>
+                <TabItem Header="Add Book" FontSize="40pt" FontStyle="Italic" FontFamily="Times New Roman" Foreground="DarkBlue">
+                    <TabItem.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="10"/>
+                        </Style>
+                    </TabItem.Resources>
+                    <StackPanel>
+                        <Label Content="Добавление книг пользователю" HorizontalAlignment="Center" FontSize="40pt" FontStyle="Italic" FontFamily="Times New Roman" Foreground="DarkBlue" />
+                        <ListView Name="UserAddList" FontFamily="Times New Roman" FontSize="15pt" SelectionChanged="UsersList_SelectionChanged">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn  Width="150" Header="ID" DisplayMemberBinding="{Binding Path=Id}"/>
+                                <GridViewColumn  Width="400" Header="Name" DisplayMemberBinding="{Binding Path=Name}"/>
+                                <GridViewColumn Width="400" Header="Family" DisplayMemberBinding="{Binding Path=Family}"/>
+                                <GridViewColumn Width="250" Header="Books" DisplayMemberBinding="{Binding Path=Books}"/>
+                                    
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <ListView Margin="0,30,0,0" Name="BookAddList"  FontFamily="Times New Roman" FontSize="20pt" SelectionChanged="BooksList_SelectionChanged">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn  Width="250" Header="Autor" DisplayMemberBinding="{Binding Path=Autor}" />
+                                <GridViewColumn  Width="150" Header="Acr" DisplayMemberBinding="{Binding Path=Acr}"/>
+                                <GridViewColumn Width="400" Header="Age" DisplayMemberBinding="{Binding Path=Age}"/>
+                                <GridViewColumn Width="400" Header="Count" DisplayMemberBinding="{Binding Path=Count}"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                        <Button Name="AddUsersBookBtn" Click="AddBookToUser_Click"  Background="DarkBlue" Height="50" Foreground="White" Width="250"  Content="Добавить книгу пользователю" FontSize="10pt" VerticalAlignment="Bottom"  Margin="10,40,0,0">
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="10"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+                    </StackPanel>
+                    
                 </TabItem>
             </TabControl>
         </DockPanel>

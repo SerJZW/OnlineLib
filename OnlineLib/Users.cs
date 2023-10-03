@@ -11,13 +11,13 @@ namespace OnlineLib
         public int Id { get; set; }
         public string? Name { get; set; }
         public string? Family { get; set; }
-        public List<Books> Books { get; set; }
-        public Users(int id, string name, string family, List<Books> books) 
+        public List<Books> UserBooks { get; set; }
+        public Users(int id, string name, string family) 
         {
             Id = id;
             Name = name;
             Family = family;
-            Books = books;
+            UserBooks = new List<Books>();
         }
 
     }

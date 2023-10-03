@@ -147,8 +147,14 @@
                                 <GridViewColumn  Width="150" Header="ID" DisplayMemberBinding="{Binding Path=Id}"/>
                                 <GridViewColumn  Width="400" Header="Name" DisplayMemberBinding="{Binding Path=Name}"/>
                                 <GridViewColumn Width="400" Header="Family" DisplayMemberBinding="{Binding Path=Family}"/>
-                                <GridViewColumn Width="250" Header="Books" DisplayMemberBinding="{Binding Path=Books}"/>
-                            </GridView>
+                                    <GridViewColumn Width="250" Header="Books">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Books.Count}" />
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                </GridView>
                         </ListView.View>
                     </ListView>
                    

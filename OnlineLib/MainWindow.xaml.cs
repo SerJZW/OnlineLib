@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 
 namespace OnlineLib
@@ -212,10 +213,7 @@ namespace OnlineLib
 
         private void AddBook_ClickUsers(object sender, RoutedEventArgs e)
         {
-            if(books.Count != null)
-            {
-                
-            }
+
         }
     }
 }

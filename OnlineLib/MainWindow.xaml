@@ -94,24 +94,23 @@
                             </ListView.View>
                         </ListView>
                         <DockPanel>
-                            <Label HorizontalAlignment="Center" FontFamily="Gabriola" FontSize="30pt" Foreground="DarkBlue" FontWeight="Bold">Добавить книгу</Label>
+                            <Label HorizontalAlignment="Center" FontFamily="Gabriola" FontSize="20pt" Foreground="DarkBlue" FontWeight="Bold">Добавить книгу</Label>
                         </DockPanel>
                         <DockPanel>
                             <Label  FontFamily="Times New Roman" FontSize="20pt"  FontStyle="Italic" Foreground="Black" Width="300">Автор</Label>
-                            <TextBox Name="AutorText" FontSize="20pt" Margin="-300,5,0,0" VerticalAlignment="Center" Height="40" Width="400" HorizontalAlignment="Center"></TextBox>
+                            <TextBox Name="AutorText" FontSize="10pt" Margin="-300,5,0,0" VerticalAlignment="Center" Height="20" Width="400" HorizontalAlignment="Center"></TextBox>
                         </DockPanel>
                         <DockPanel>
                             <Label  FontFamily="Times New Roman" FontSize="15pt"  FontStyle="Italic" Foreground="Black" Width="300">Артикул</Label>
-                            <TextBox Name="AcrText" FontSize="20pt" Margin="-300,5,0,0" VerticalAlignment="Center" Height="40" Width="400" HorizontalAlignment="Center" Background="AliceBlue"></TextBox>
+                            <TextBox Name="AcrText" FontSize="10pt" Margin="-300,5,0,0" VerticalAlignment="Center" Height="20" Width="400" HorizontalAlignment="Center" Background="AliceBlue"></TextBox>
                         </DockPanel>
                         <DockPanel>
                             <Label  FontFamily="Times New Roman" FontSize="15pt"  FontStyle="Italic" Foreground="Black" Width="300">Дата</Label>
-                            <TextBox Name="AgeText" FontSize="20pt" Margin="-300,5,0,0" VerticalAlignment="Center" Height="40" Width="400" HorizontalAlignment="Center"></TextBox>
+                            <TextBox Name="AgeText" FontSize="10pt" Margin="-300,5,0,0" VerticalAlignment="Center" Height="20" Width="400" HorizontalAlignment="Center"></TextBox>
                         </DockPanel>
                         <DockPanel>
-                            <Label  FontFamily="Times New Roman" FontSize="15pt"  FontStyle="Italic" Foreground="Black" Width="300">Количесвто</Label>
-
-                            <TextBox Name="CountText" FontSize="20pt" Margin="-300,5,0,0" VerticalAlignment="Center" Height="40" Width="400" HorizontalAlignment="Center" Background="AliceBlue"></TextBox>
+                            <Label  FontFamily="Times New Roman" FontSize="15pt"  FontStyle="Italic" Foreground="Black" Width="300">Количество</Label>
+                            <TextBox Name="CountText" FontSize="10pt" Margin="-300,5,0,0" VerticalAlignment="Center" Height="20" Width="400"  HorizontalAlignment="Center" Background="AliceBlue"></TextBox>
                         </DockPanel>
                         <DockPanel  HorizontalAlignment="Center" Margin="10,10,0,0">
                         <Button Name="AddBooksBtn" Click="Add_ClickBooks"  FontSize="10pt" Height="50" Background="DarkBlue" Foreground="White" Width="150" Content="Добавить Книгу" VerticalAlignment="Bottom" Margin="10,0,0,0">
@@ -212,7 +211,7 @@
                     </TabItem.Resources>
                     <StackPanel>
                         <Label Content="Добавление книг пользователю" HorizontalAlignment="Center" FontSize="40pt" FontStyle="Italic" FontFamily="Times New Roman" Foreground="DarkBlue" />
-                        <ListView Name="UserAddList" FontFamily="Times New Roman" FontSize="15pt" SelectionChanged="UsersList_SelectionChanged">
+                        <ListView Name="UserAddList" MaxHeight="120px" FontFamily="Times New Roman" FontSize="15pt" SelectionChanged="UsersList_SelectionChanged">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn  Width="150" Header="ID" DisplayMemberBinding="{Binding Path=Id}"/>
@@ -223,7 +222,7 @@
                             </GridView>
                         </ListView.View>
                     </ListView>
-                    <ListView Margin="0,30,0,0" Name="BookAddList"  FontFamily="Times New Roman" FontSize="20pt" SelectionChanged="BooksList_SelectionChanged">
+                    <ListView  MaxHeight="120px" Margin="0,30,0,0" Name="BookAddList"  FontFamily="Times New Roman" FontSize="20pt" SelectionChanged="BooksList_SelectionChanged">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn  Width="250" Header="Autor" DisplayMemberBinding="{Binding Path=Autor}" />

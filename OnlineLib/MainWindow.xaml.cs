@@ -38,6 +38,7 @@ namespace OnlineLib
             UsersList.ItemsSource = users;
             UserAddList.ItemsSource= users;
             BookAddList.ItemsSource = books;
+            
 
         }
 
@@ -78,7 +79,11 @@ namespace OnlineLib
                 IdText.Text = Convert.ToString(selectedUser.Id);
                 NameText.Text = Convert.ToString(selectedUser.Name);
                 FamilyText.Text = Convert.ToString(selectedUser.Family);
-                BooksUserText.Text = Convert.ToString(selectedUser.UserBooks);
+                foreach(var item in selectedUser.UserBooks)
+                {
+                    BooksUserText.Text = Convert.ToString(item);
+                }
+             
             }
         }
 
@@ -98,6 +103,7 @@ namespace OnlineLib
                     FamilyText.Text = "";
                     UsersList.ItemsSource = users;
                     UsersList.Items.Refresh();
+                    UserAddList.Items.Refresh();
                     MessageBox.Show("Пользователь успешно добавлен.");
                 }
                 else
@@ -118,6 +124,7 @@ namespace OnlineLib
                     users.Remove(selectedUser);
                     UsersList.ItemsSource = users;
                     UsersList.Items.Refresh();
+                    UserAddList.Items.Refresh();
                     MessageBox.Show("Пользователь успешно удален.");
                 }
             }
@@ -144,6 +151,7 @@ namespace OnlineLib
                             CountText.Text = "";
                             BooksList.ItemsSource = books;
                             BooksList.Items.Refresh();
+                            BookAddList.Items.Refresh();
                             MessageBox.Show("Книга успешно добавлена.");
                         }
                         else
@@ -172,6 +180,7 @@ namespace OnlineLib
                 books.Remove(selectedBook);
                 BooksList.ItemsSource = books;
                 BooksList.Items.Refresh();
+                BookAddList.Items.Refresh();
                 MessageBox.Show("Книга успешно удалена.");
             }
         }
@@ -188,6 +197,7 @@ namespace OnlineLib
                     selectedBook.Age = DateOnly.Parse(AgeText.Text);
                     selectedBook.Count = Convert.ToInt32(CountText.Text);
                     BooksList.Items.Refresh();
+                    BookAddList.Items.Refresh();
                     MessageBox.Show("Данные книги успешно обновлены.");
 
                 }
@@ -204,6 +214,7 @@ namespace OnlineLib
                     selectedUser.Name = NameText.Text;
                     selectedUser.Family = FamilyText.Text;
                     UsersList.Items.Refresh();
+                    UserAddList.Items.Refresh();
                     MessageBox.Show("Данные пользователя успешно обновлены.");
                 }
             }
@@ -224,6 +235,7 @@ namespace OnlineLib
             if (selectedBook.Count > 0)
             {
                 selectedBook.Count--;
+                selectedUser.UserBooks.Add(selectedBook);
                 UserAddList.Items.Refresh();
                 BookAddList.Items.Refresh();
                 UsersList.Items.Refresh();

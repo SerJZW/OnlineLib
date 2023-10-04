@@ -151,7 +151,7 @@
                                 <GridViewColumn  Width="150" Header="ID" DisplayMemberBinding="{Binding Path=Id}"/>
                                 <GridViewColumn  Width="400" Header="Name" DisplayMemberBinding="{Binding Path=Name}"/>
                                 <GridViewColumn Width="400" Header="Family" DisplayMemberBinding="{Binding Path=Family}"/>
-                                <GridViewColumn Width="250" Header="Books" DisplayMemberBinding="{Binding Path=Books}"/>
+                                <GridViewColumn Width="250" Header="Autor" DisplayMemberBinding="{Binding Path=Autor}"/>
                                 </GridView>
                         </ListView.View>
                     </ListView>

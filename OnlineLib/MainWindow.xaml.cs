@@ -81,7 +81,7 @@ namespace OnlineLib
                 FamilyText.Text = Convert.ToString(selectedUser.Family);
                 foreach(var item in selectedUser.UserBooks)
                 {
-                    BooksUserText.Text = Convert.ToString(item);
+                    BooksUserText.Text = Convert.ToString(selectedUser.UserBooks.Count);
                 }
              
             }

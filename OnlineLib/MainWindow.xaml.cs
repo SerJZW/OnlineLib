@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 
 namespace OnlineLib
@@ -36,9 +37,9 @@ namespace OnlineLib
 
             BooksList.ItemsSource = books;
             UsersList.ItemsSource = users;
-            UserAddList.ItemsSource= users;
+            UserAddList.ItemsSource = users;
             BookAddList.ItemsSource = books;
-            
+
 
         }
 
@@ -79,11 +80,11 @@ namespace OnlineLib
                 IdText.Text = Convert.ToString(selectedUser.Id);
                 NameText.Text = Convert.ToString(selectedUser.Name);
                 FamilyText.Text = Convert.ToString(selectedUser.Family);
-                foreach(var item in selectedUser.UserBooks)
+                foreach (var item in selectedUser.UserBooks)
                 {
                     BooksUserText.Text = Convert.ToString(selectedUser.UserBooks.Count);
                 }
-             
+
             }
         }
 
@@ -221,11 +222,11 @@ namespace OnlineLib
         }
 
         private void AddBookToUser_Click(object sender, RoutedEventArgs e)
-        { 
+        {
             Users? selectedUser = UserAddList.SelectedItem as Users;
             Books? selectedBook = BookAddList.SelectedItem as Books;
 
-         
+
             if (selectedUser == null || selectedBook == null)
             {
                 MessageBox.Show("Выберите пользователя и книгу для выдачи.");
@@ -248,6 +249,37 @@ namespace OnlineLib
             else
             {
                 MessageBox.Show("Эта книга больше не доступна.");
+            }
+        }
+
+
+
+        private void SearchUserButton_Click(object sender, RoutedEventArgs e)
+        {
+            string searchTerm = SearchUser.Text; 
+
+            if (!string.IsNullOrEmpty(searchTerm))
+            {
+                bool userFound = false;
+
+                foreach (Users user in users)
+                {
+                    string fullName = $"{user.Name} {user.Family}";
+                    if (fullName.Equals(searchTerm, StringComparison.OrdinalIgnoreCase))
+                    {
+                        MessageBox.Show($"Пользователь {fullName} найден.");
+                        userFound = true;
+                        break; 
+                    }
+                }
+                if (!userFound)
+                {
+                    MessageBox.Show($"Пользователь с именем '{searchTerm}' не найден.");
+                }
+            }
+            else
+            { 
+                MessageBox.Show("Введите фамилию и имя пользователя для поиска.");
             }
         }
     }

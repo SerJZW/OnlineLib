@@ -46,6 +46,20 @@
                     </Style>
                 </Button.Resources>
             </Button>
+            <TextBox Name="SearchUser" Width="200" Height="40" HorizontalAlignment="Left" Margin="20,0,0,0">
+                <TextBox.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </TextBox.Resources>
+            </TextBox>
+            <Button  Width="50px" Height="50px" HorizontalAlignment="Left" Margin="10,0,10,0" Content="Search" FontSize="10pt" Background="White" Foreground="DarkBlue" Click="SearchUserButton_Click">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="30"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
         </DockPanel>
 
         <DockPanel Grid.Row="2" Background="DarkBlue" ></DockPanel>
@@ -198,7 +212,6 @@
                                     </Style>
                                 </Button.Resources>
                             </Button>
-                           
                         </DockPanel>
                      
                     </StackPanel>
@@ -242,6 +255,7 @@
                     </StackPanel>
                     
                 </TabItem>
+                
             </TabControl>
         </DockPanel>
     </Grid>

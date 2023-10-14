@@ -6,13 +6,12 @@
         xmlns:local="clr-namespace:OnlineLib"
         mc:Ignorable="d"
         Title="OnlineLib" Height="1080" Width="1920" MinHeight="800" MinWidth="1000" Icon="/Images/IconApl.png" >
- 
-    
     <!-- WindowState="Maximized"
     WindowStyle="None" >  -->
 
 
     <Grid>
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="18*"/>
@@ -20,20 +19,59 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="12*"/>
+
         </Grid.RowDefinitions>
+
         <DockPanel Background="DarkBlue" Grid.RowSpan="1" Grid.ColumnSpan="3" MinHeight="10px" MinWidth="20px">
             <Image Grid.Row="0" Grid.Column="0" Source="/Images/IconApl.png" MinHeight="40px" MinWidth="40px"></Image>
             <TextBlock Foreground="White" FontSize="40pt" FontStyle="Italic" MinHeight="10pt" MinWidth="10pt" HorizontalAlignment="Center" VerticalAlignment="Top">OnlineLib</TextBlock>
-            <Button Command="{Binding ExitCommand}" Content="Exit" Style="{StaticResource ButtonStyle}" DockPanel.Dock="Right"/>
-            <Button Command="{Binding ContactCommand}" Content="Contact" Style="{StaticResource ButtonStyle}" DockPanel.Dock="Right"/>
-            <Button Command="{Binding ShowAboutCommand}" Content="About_Apl" Style="{StaticResource ButtonStyle}" DockPanel.Dock="Right"/>
-            <TextBox Style="{StaticResource TextBoxStyle}" Name="SearchUser" Width="200" Height="40" HorizontalAlignment="Left" Margin="20,0,0,0"/>
-            <Button Style="{StaticResource ButtonStyle}" Content="Search" FontSize="10pt" HorizontalAlignment="Left" Width="50px" Height="50px"/>
+            <Button  Name="Exit" Width="180px" Height="50px" HorizontalAlignment="Right" Margin="10, 0,10,0" Content="Exit" FontSize="20pt" Background="SkyBlue" Foreground="Black" Click="Exit_Click" DockPanel.Dock="Right">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            <Button Name="Contact" Width="180px" Height="50px" HorizontalAlignment="Right" Margin="10, 0,10,0" Content="Contact" FontSize="20pt" Background="White" Foreground="DarkBlue" DockPanel.Dock="Right" Click="Contact_Click">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            <Button Name="About_Apl" Width="180px" Height="50px" HorizontalAlignment="Right" Margin="10, 0,10,0" Content="About Apl" FontSize="20pt" Background="White" Foreground="DarkBlue" Click="About_Apl_Click" DockPanel.Dock="Right">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            <TextBox Name="SearchUser" Width="200" Height="40" HorizontalAlignment="Left" Margin="20,0,0,0">
+                <TextBox.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </TextBox.Resources>
+            </TextBox>
+            <Button  Width="50px" Height="50px" HorizontalAlignment="Left" Margin="10,0,10,0" Content="Search" FontSize="10pt" Background="White" Foreground="DarkBlue" Click="SearchUserButton_Click">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="30"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
         </DockPanel>
+
         <DockPanel Grid.Row="2" Background="DarkBlue" ></DockPanel>
+
         <DockPanel Grid.Column="1" Grid.Row="1" MinHeight="600px" MinWidth="600">
             <TabControl>
-                <TabItem Header="Main" Style="{StaticResource TabItemStyle}">
+                <TabItem Header="Main" FontSize="40pt" FontStyle="Italic" FontFamily="Times New Roman"  Foreground="DarkBlue">
+                    <TabItem.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="10"/>
+                        </Style>
+                    </TabItem.Resources>
                     <DockPanel MinHeight="400" MinWidth="400">
                         <Viewbox>
                             <Border BorderBrush="Black" BorderThickness="3"  Width="400" Height="auto" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="40,10,0,150" MinHeight="300px" MinWidth="300px">
@@ -45,11 +83,21 @@
                                 <Image Source="/Images/2.jpg" Height="auto" Width="auto" Margin="40,40,30,150" Stretch="UniformToFill"/>
                             </DockPanel>
                         </Viewbox>
+
                     </DockPanel>
+
                 </TabItem>
-                <TabItem Header="Books" Style="{StaticResource TabItemStyle}">
+
+                <TabItem Header="Books" FontSize="40pt" FontStyle="Italic" FontFamily="Times New Roman"  Foreground="DarkBlue">
+               
+                    <TabItem.Resources>
+                        
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="10"/>
+                        </Style>
+                    </TabItem.Resources>
                     <StackPanel>
-                        <ListView Name="BooksList" FontFamily="Times New Roman" FontSize="20pt" SelectedItem="{Binding SelectedBooks}" ItemsSource="{Binding Book}">
+                    <ListView Name="BooksList"  FontFamily="Times New Roman" FontSize="20pt" SelectionChanged="BooksList_SelectionChanged">
                             <ListView.View>
                                 <GridView>
                                     <GridViewColumn  Width="250" Header="Autor" DisplayMemberBinding="{Binding Path=Autor}" />
@@ -59,102 +107,157 @@
                                 </GridView>
                             </ListView.View>
                         </ListView>
-                        <StackPanel DataContext="{Binding SelectedBooks}" >
-                            <DockPanel>
-                                <Label HorizontalAlignment="Center" Style="{StaticResource LabelStyle}" Padding="60,5,5,5">Добавить книгу</Label>
-                            </DockPanel>
-                            <DockPanel>
-                                <Label  Style="{StaticResource LabelStyle}">Автор</Label>
-                                <TextBox Style="{StaticResource TextBoxMenuStyle}" Text="{Binding Autor, UpdateSourceTrigger=PropertyChanged}"></TextBox>
-                            </DockPanel>
-                            <DockPanel>
-                                <Label  Style="{StaticResource LabelStyle}">Артикул</Label>
-                                <TextBox  Text="{Binding Acr, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TextBoxMenuStyle}"></TextBox>
-                            </DockPanel>
-                            <DockPanel>
-                                <Label  Style="{StaticResource LabelStyle}">Дата</Label>
-                                <TextBox Text="{Binding Age, UpdateSourceTrigger=PropertyChanged,StringFormat='MM/dd/yyyy'}" Style="{StaticResource TextBoxMenuStyle}"></TextBox>
-                            </DockPanel>
-                            <DockPanel>
-                                <Label  Style="{StaticResource LabelStyle}">Количество</Label>
-                                <TextBox   Text="{Binding Count, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TextBoxMenuStyle}"></TextBox>
-                            </DockPanel>
-                        </StackPanel>
+                        <DockPanel>
+                            <Label HorizontalAlignment="Center" FontFamily="Gabriola" FontSize="20pt" Foreground="DarkBlue" FontWeight="Bold">Добавить книгу</Label>
+                        </DockPanel>
+                        <DockPanel>
+                            <Label  FontFamily="Times New Roman" FontSize="20pt"  FontStyle="Italic" Foreground="Black" Width="300">Автор</Label>
+                            <TextBox Name="AutorText" FontSize="10pt" Margin="-300,5,0,0" VerticalAlignment="Center" Height="20" Width="400" HorizontalAlignment="Center"></TextBox>
+                        </DockPanel>
+                        <DockPanel>
+                            <Label  FontFamily="Times New Roman" FontSize="15pt"  FontStyle="Italic" Foreground="Black" Width="300">Артикул</Label>
+                            <TextBox Name="AcrText" FontSize="10pt" Margin="-300,5,0,0" VerticalAlignment="Center" Height="20" Width="400" HorizontalAlignment="Center" Background="AliceBlue"></TextBox>
+                        </DockPanel>
+                        <DockPanel>
+                            <Label  FontFamily="Times New Roman" FontSize="15pt"  FontStyle="Italic" Foreground="Black" Width="300">Дата</Label>
+                            <TextBox Name="AgeText" FontSize="10pt" Margin="-300,5,0,0" VerticalAlignment="Center" Height="20" Width="400" HorizontalAlignment="Center"></TextBox>
+                        </DockPanel>
+                        <DockPanel>
+                            <Label  FontFamily="Times New Roman" FontSize="15pt"  FontStyle="Italic" Foreground="Black" Width="300">Количество</Label>
+                            <TextBox Name="CountText" FontSize="10pt" Margin="-300,5,0,0" VerticalAlignment="Center" Height="20" Width="400"  HorizontalAlignment="Center" Background="AliceBlue"></TextBox>
+                        </DockPanel>
                         <DockPanel  HorizontalAlignment="Center" Margin="10,10,0,0">
-                            <Button Name="AddBooksBtn" Command="{Binding AddBooksCommand}" Content="Добавить Книгу" Style="{StaticResource ButtonMenuStyle}"/>
-                            <Button Name="DeleteBooksBtn" Command="{Binding RemoveBooksCommand}" CommandParameter="{Binding SelectedBooks}" Content="Удалить Книгу" Style="{StaticResource ButtonMenuStyle}"/>
+                        <Button Name="AddBooksBtn" Click="Add_ClickBooks"  FontSize="10pt" Height="50" Background="DarkBlue" Foreground="White" Width="150" Content="Добавить Книгу" VerticalAlignment="Bottom" Margin="10,0,0,0">
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="10"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+                        <Button Name="DeleteBooksBtn" Click="Delete_ClickBooks" Background="DarkBlue" Height="50" Foreground="White" Width="150"  Content="Удалить Книгу" FontSize="10pt" VerticalAlignment="Bottom"  Margin="10,0,0,0">
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="10"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+                        <Button Name="RerideBooksBtn" Click="Reride_ClickBooks"  Background="DarkBlue" Height="50" Foreground="White" Width="150"  Content="Перезаписать Книгу" FontSize="10pt" VerticalAlignment="Bottom"  Margin="10,0,0,0">
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="10"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
                         </DockPanel>
                     </StackPanel>
                 </TabItem>
-                <TabItem Header="Users" Style="{StaticResource TabItemStyle}">
+                <TabItem Header="Users" FontSize="40pt" FontStyle="Italic" FontFamily="Times New Roman" Foreground="DarkBlue">
+                   
+                    <TabItem.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="10"/>
+                        </Style>
+                    </TabItem.Resources>
                     <StackPanel>
-                        <ListView Name="UsersList" ItemsSource="{Binding User}" SelectedItem="{Binding SelectedUser}" FontFamily="Times New Roman" FontSize="15pt" >
-                            <ListView.View>
-                                <GridView>
-                                    <GridViewColumn  Width="150" Header="ID" DisplayMemberBinding="{Binding Path=ID}"/>
-                                    <GridViewColumn  Width="400" Header="Name" DisplayMemberBinding="{Binding Path=Name}"/>
-                                    <GridViewColumn Width="400" Header="Family" DisplayMemberBinding="{Binding Path=Family}"/>
-                                    <GridViewColumn Width="250" Header="Autor" DisplayMemberBinding="{Binding Path=Autor}"/>
+                        <ListView Name="UsersList" FontFamily="Times New Roman" FontSize="15pt" SelectionChanged="UsersList_SelectionChanged">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn  Width="150" Header="ID" DisplayMemberBinding="{Binding Path=Id}"/>
+                                <GridViewColumn  Width="400" Header="Name" DisplayMemberBinding="{Binding Path=Name}"/>
+                                <GridViewColumn Width="400" Header="Family" DisplayMemberBinding="{Binding Path=Family}"/>
+                                <GridViewColumn Width="250" Header="Autor" DisplayMemberBinding="{Binding Path=Autor}"/>
                                 </GridView>
-                            </ListView.View>
-                        </ListView>
-                        <StackPanel DataContext="{Binding SelectedUser}">
-                            <DockPanel>
-                                <Label Style="{StaticResource LabelStyle}" HorizontalAlignment="Center">Добавить пользователя</Label>
-                            </DockPanel>
-                            <DockPanel>
-                                <Label  Style="{StaticResource LabelStyle}">ID Пользователя</Label>
-                                <TextBox Text="{Binding ID, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TextBoxMenuStyle}"></TextBox>
-                            </DockPanel>
-                            <DockPanel>
-                                <Label  Style="{StaticResource LabelStyle}">Имя Пользователя</Label>
-                                <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TextBoxMenuStyle}"></TextBox>
-                            </DockPanel>
-                            <DockPanel>
-                                <Label  Style="{StaticResource LabelStyle}">Фамилия Пользователя</Label>
-                                <TextBox Text="{Binding Family, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TextBoxMenuStyle}"></TextBox>
-                            </DockPanel>
-                            <DockPanel>
-                                <Label Style="{StaticResource LabelStyle}">Книги Пользователя</Label>
-                                <TextBox Text="{Binding UserBooks, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TextBoxMenuStyle}"></TextBox>
-                            </DockPanel>
-                        </StackPanel >
-                        <DockPanel HorizontalAlignment="Center" Margin="10,10,0,0">
-                            <Button Name="AddUserBtn" Command="{Binding AddUserCommand}"
-                                    Content="Добавить пользователя" Style="{StaticResource ButtonMenuStyle}"/>
-                            <Button Name="DeleteUserBtn" Command="{Binding RemoveUserCommand}" CommandParameter="{Binding SelectedUser}" 
-                                    Content="Удалить Пользователя" Style="{StaticResource ButtonMenuStyle}"/>
+                        </ListView.View>
+                    </ListView>
+                   
+                    <DockPanel>
+                            <Label HorizontalAlignment="Center" FontFamily="Times New Roman" FontSize="30pt" FontStyle="Italic" Foreground="DarkBlue">Добавить пользователя</Label>
+                    </DockPanel>
+                        <DockPanel>
+                            <Label  FontFamily="Times New Roman" FontSize="15pt" FontStyle="Italic" Foreground="Black" Width="300">ID Пользователя</Label>
+                            <TextBox Name="IdText" FontSize="20pt" Margin="-300,5,0,0" VerticalAlignment="Center" Height="40" Width="400" HorizontalAlignment="Center"></TextBox>
                         </DockPanel>
-                    </StackPanel>
-                </TabItem>
-                <TabItem Header="AddBook" Style="{StaticResource TabItemStyle}" DataContext="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext}">
+                        <DockPanel>
+                            <Label  FontFamily="Times New Roman" FontSize="15pt" FontStyle="Italic" Foreground="Black" Width="300">Имя Пользователя</Label>
+                            <TextBox Name="NameText" FontSize="20pt" Margin="-300,5,0,0" VerticalAlignment="Center" Height="40" Width="400" HorizontalAlignment="Center" Background="AliceBlue"></TextBox>
+                        </DockPanel>
+                        <DockPanel>
+                            <Label  FontFamily="Times New Roman" FontSize="13pt" FontStyle="Italic" Foreground="Black" Width="300">Фамилия Пользователя</Label>
+                            <TextBox Name="FamilyText" FontSize="20pt" Margin="-300,5,0,0" VerticalAlignment="Center" Height="40" Width="400" HorizontalAlignment="Center"></TextBox>
+                        </DockPanel>
+                        <DockPanel>
+                            <Label  FontFamily="Times New Roman" FontSize="15pt" FontStyle="Italic" Foreground="Black" Width="300">Книги Пользователя</Label>
 
-                    <StackPanel>
-                        <Label Content="Добавление книг пользователю" FontSize="16pt" Style="{StaticResource LabelStyle}" />
-                        <ListView Name="UserAddList" ItemsSource="{Binding User}" SelectedItem="{Binding SelectedUser}" MaxHeight="120px" FontFamily="Times New Roman" FontSize="15pt">
-                            <ListView.View>
-                                <GridView>
-                                    <GridViewColumn  Width="150" Header="ID" DisplayMemberBinding="{Binding Path=ID}"/>
-                                    <GridViewColumn  Width="400" Header="Name" DisplayMemberBinding="{Binding Path=Name}"/>
-                                    <GridViewColumn Width="400" Header="Family" DisplayMemberBinding="{Binding Path=Family}"/>
-                                    <GridViewColumn Width="250" Header="Books" DisplayMemberBinding="{Binding Path=Books}"/>
-                                </GridView>
-                            </ListView.View>
-                        </ListView>
-                        <ListView  MaxHeight="120px" Margin="0,30,0,0" SelectedItem="{Binding SelectedBooks}" ItemsSource="{Binding Book}" Name="BookAddList"  FontFamily="Times New Roman" FontSize="20pt">
-                            <ListView.View>
-                                <GridView>
-                                    <GridViewColumn  Width="250" Header="Autor" DisplayMemberBinding="{Binding Path=Autor, UpdateSourceTrigger=PropertyChanged}" />
-                                    <GridViewColumn  Width="150" Header="Acr" DisplayMemberBinding="{Binding Path=Acr, UpdateSourceTrigger=PropertyChanged}"/>
-                                    <GridViewColumn Width="400" Header="Age" DisplayMemberBinding="{Binding Path=Age, UpdateSourceTrigger=PropertyChanged}"/>
-                                    <GridViewColumn Width="400" Header="Count" DisplayMemberBinding="{Binding Path=Count, UpdateSourceTrigger=PropertyChanged}"/>
-                                </GridView>
-                            </ListView.View>
-                        </ListView>
-                        <Button Name="AddUsersBookBtn" Command="{Binding AddBookToUserCommand}" Content="Добавить книгу пользователю" Width="200px" Style="{StaticResource ButtonMenuStyle}"/>
+                            <TextBox Name="BooksUserText" FontSize="20pt" Margin="-300,5,0,0" VerticalAlignment="Center" Height="40" Width="400" HorizontalAlignment="Center" Background="AliceBlue"></TextBox>
+                        </DockPanel>
+                        <DockPanel HorizontalAlignment="Center" Margin="10,10,0,0">
+                        <Button Name="AddUserBtn" Click="Add_ClickUser"  FontSize="10pt" Height="50" Background="DarkBlue" Foreground="White" Width="150" Content="Добавить пользователя" VerticalAlignment="Top" Margin="10,0,0,0">
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="10"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+                        <Button Name="DeleteUserBtn" Click="Delete_ClickUser"  Background="DarkBlue" Height="50" Foreground="White" Width="150"  Content="Удалить Пользователя" FontSize="10pt" VerticalAlignment="Bottom"  Margin="10,0,0,0">
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="10"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+                            <Button Name="RerideUsersBtn" Click="Reride_ClickUsers"  Background="DarkBlue" Height="50" Foreground="White" Width="150"  Content="Перезаписать Пользователя" FontSize="10pt" VerticalAlignment="Bottom"  Margin="10,0,0,0">
+                                <Button.Resources>
+                                    <Style TargetType="Border">
+                                        <Setter Property="CornerRadius" Value="10"/>
+                                    </Style>
+                                </Button.Resources>
+                            </Button>
+                        </DockPanel>
+                     
                     </StackPanel>
                 </TabItem>
+                <TabItem Header="Add Book" FontSize="40pt" FontStyle="Italic" FontFamily="Times New Roman" Foreground="DarkBlue">
+                    <TabItem.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="10"/>
+                        </Style>
+                    </TabItem.Resources>
+                    <StackPanel>
+                        <Label Content="Добавление книг пользователю" HorizontalAlignment="Center" FontSize="40pt" FontStyle="Italic" FontFamily="Times New Roman" Foreground="DarkBlue" />
+                        <ListView Name="UserAddList" MaxHeight="120px" FontFamily="Times New Roman" FontSize="15pt" SelectionChanged="UsersList_SelectionChanged">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn  Width="150" Header="ID" DisplayMemberBinding="{Binding Path=Id}"/>
+                                <GridViewColumn  Width="400" Header="Name" DisplayMemberBinding="{Binding Path=Name}"/>
+                                <GridViewColumn Width="400" Header="Family" DisplayMemberBinding="{Binding Path=Family}"/>
+                                <GridViewColumn Width="250" Header="Books" DisplayMemberBinding="{Binding Path=Books}"/>
+                                    
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <ListView  MaxHeight="120px" Margin="0,30,0,0" Name="BookAddList"  FontFamily="Times New Roman" FontSize="20pt" SelectionChanged="BooksList_SelectionChanged">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn  Width="250" Header="Autor" DisplayMemberBinding="{Binding Path=Autor}" />
+                                <GridViewColumn  Width="150" Header="Acr" DisplayMemberBinding="{Binding Path=Acr}"/>
+                                <GridViewColumn Width="400" Header="Age" DisplayMemberBinding="{Binding Path=Age}"/>
+                                <GridViewColumn Width="400" Header="Count" DisplayMemberBinding="{Binding Path=Count}"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                        <Button Name="AddUsersBookBtn" Click="AddBookToUser_Click"  Background="DarkBlue" Height="50" Foreground="White" Width="250"  Content="Добавить книгу пользователю" FontSize="10pt" VerticalAlignment="Bottom"  Margin="10,40,0,0">
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="10"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+                    </StackPanel>
+                    
+                </TabItem>
+                
             </TabControl>
         </DockPanel>
     </Grid>
+
 </Window>

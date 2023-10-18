@@ -27,8 +27,8 @@
             <Button Command="{Binding ExitCommand}" Content="Exit" Style="{StaticResource ButtonStyle}" DockPanel.Dock="Right"/>
             <Button Command="{Binding ContactCommand}" Content="Contact" Style="{StaticResource ButtonStyle}" DockPanel.Dock="Right"/>
             <Button Command="{Binding ShowAboutCommand}" Content="About_Apl" Style="{StaticResource ButtonStyle}" DockPanel.Dock="Right"/>
-            <TextBox Style="{StaticResource TextBoxStyle}" Name="SearchUser" Width="200" Height="40" HorizontalAlignment="Left" Margin="20,0,0,0"/>
-            <Button Style="{StaticResource ButtonStyle}" Content="Search" FontSize="10pt" HorizontalAlignment="Left" Width="50px" Height="50px"/>
+            <TextBox Style="{StaticResource TextBoxStyle}"  Name="SearchUser"  Width="200" Height="40" HorizontalAlignment="Left" Margin="20,0,0,0"/>
+            <Button Style="{StaticResource ButtonStyle}" Command="{Binding FindUser}" Content="Search" FontSize="10pt" HorizontalAlignment="Left" Width="50px" Height="50px"/>
         </DockPanel>
         <DockPanel Grid.Row="2" Background="DarkBlue" ></DockPanel>
         <DockPanel Grid.Column="1" Grid.Row="1" MinHeight="600px" MinWidth="600">

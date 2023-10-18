@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows;
 
 namespace OnlineLib
@@ -9,10 +10,11 @@ namespace OnlineLib
     {
         private Users? selectedUser;
         private Books? selectedBook;
-        private RelayCommand addUserCommand;
-        private RelayCommand removeUserCommand;
-        private RelayCommand addBookCommand;
-        private RelayCommand removeBookCommand;
+        private Users? searchUser;
+        private RelayCommand? addUserCommand;
+        private RelayCommand? removeUserCommand;
+        private RelayCommand? addBookCommand;
+        private RelayCommand? removeBookCommand;
 
         public ObservableCollection<Users> User { get; set; }
         public ObservableCollection<Books> Book { get; set; }
@@ -22,6 +24,11 @@ namespace OnlineLib
         {
             get { return selectedUser; }
             set { selectedUser = value; OnPropertyChanged("SelectedUser"); }
+        }
+        public Users? SearchUser
+        {
+            get { return searchUser; }
+            set { searchUser = value; OnPropertyChanged("SearchUser"); }
         }
         public Books? SelectedBooks
         {
@@ -176,10 +183,10 @@ namespace OnlineLib
 
             }
         }
-
     }
-
 }
+
+
 
 
 
